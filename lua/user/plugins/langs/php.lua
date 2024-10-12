@@ -1,0 +1,1 @@
+return { "ta-tikoma/php.easy.nvim", ft = "php" }
