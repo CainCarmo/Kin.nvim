@@ -19,7 +19,7 @@ require("lazy").setup {
     { import = "user.plugins.langs" },
   },
   install = {
-    colorscheme = { "catppuccin", "habamax" },
+    colorscheme = { knvim.themes.lazy.custom, knvim.themes.lazy.default },
   },
   ui = {
     border = "rounded"

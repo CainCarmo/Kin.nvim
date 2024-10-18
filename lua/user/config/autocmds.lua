@@ -82,7 +82,7 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
-    vim.cmd.colorscheme "catppuccin"
+    vim.cmd.colorscheme(knvim.themes.knvim)
   end
 })
 

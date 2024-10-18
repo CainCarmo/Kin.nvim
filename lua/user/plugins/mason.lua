@@ -10,29 +10,12 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = {
+      ensure_installed = table.merge(knvim.protocols.lsps.names, {
         "bashls",
-        "clangd",
-        "css_variables",
-        "cssls",
-        "cssmodules_ls",
-        "tailwindcss",
-        "docker_compose_language_service",
-        "dockerls",
-        "emmet_ls",
-        "html",
-        "htmx",
-        "denols",
-        "ts_ls",
         "jsonls",
         "lua_ls",
-        "grammarly",
-        "intelephense",
-        "prismals",
-        "pyright",
-        "sqlls",
         "yamlls"
-      },
+      }),
       automatic_installation = { exclude = { "ruby_lsp", "rubocop" } },
     },
     event = "VeryLazy",
@@ -42,13 +25,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     lazy = false,
     opts = {
-      ensure_installed = {
-        "prettier",
-        "eslint_d",
-        "prettierd",
-        "actionlint",
-        "editorconfig-checker"
-      }
+      ensure_installed = table.merge(knvim.protocols.lsps.tools, { "editorconfig-checker" })
     },
     event = "VeryLazy",
     dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" }
