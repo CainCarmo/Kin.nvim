@@ -11,7 +11,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
-        "bash_lsp",
+        "bashls",
         "clangd",
         "css_variables",
         "cssls",
