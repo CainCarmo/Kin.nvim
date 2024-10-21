@@ -6,6 +6,10 @@ knvim.themes = {}
 knvim.themes.knvim = "catppuccin"
 knvim.themes.lazy = { custom = knvim.themes.knvim, default = "habamax" }
 
+--> ⚓ Dashboard
+knvim.dashboard = {}
+knvim.dashboard.header = nil
+
 --> ⚠️ Protocls
 knvim.protocols = {}
 knvim.protocols.lsps = {}
