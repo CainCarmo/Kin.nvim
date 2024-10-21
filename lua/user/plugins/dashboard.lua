@@ -19,7 +19,11 @@ return {
       theme  = "doom",
       hide   = { statusline = true },
       config = {
-        header = vim.split(string.rep("\n", 3) .. table.concat(ascii.headers.knvim, "\n") .. string.rep("\n", 2), "\n"),
+        header = vim.split(
+          string.rep("\n", 3)
+          .. table.concat(knvim.dashboard.header or ascii.headers.knvim, "\n")
+          .. string.rep("\n", 2), "\n"
+        ),
         center = {
           button(
             "New File",
