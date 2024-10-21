@@ -5,7 +5,7 @@ return {
     {
       "<leader>an",
       function()
-        require("lazy").load("neocord")
+        vim.cmd [[ Lazy load neocord ]]
       end,
       desc = "Active neocord",
       mode = { "n", "v" }
