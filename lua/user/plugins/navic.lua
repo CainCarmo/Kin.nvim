@@ -1,1 +1,9 @@
-return { "SmiteshP/nvim-navic", lazy = true }
+return {
+  "SmiteshP/nvim-navic",
+  opts = {
+    click = true,
+    highlight = true,
+    icons = icons.kind,
+    lsp = { auto_attach = true }
+  }
+}
