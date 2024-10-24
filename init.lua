@@ -1,12 +1,12 @@
 --> Extensions Methods
 require "user.helpers.extensions.table"
 
---> 🌐 Globals
-require "user.config.knvim"
-
 --> ☄️ Assets
 require "user.interface.ascii"
 require "user.interface.icons"
+
+--> 🌐 Globals
+require "user.config.knvim"
 
 --> ⚙️ Configs
 require "user.config.autocmds"
