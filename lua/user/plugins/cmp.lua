@@ -11,10 +11,6 @@ return {
       dependencies = "rafamadriz/friendly-snippets"
     },
     {
-      "kristijanhusak/vim-dadbod-completion",
-      ft = { "sql", "mysql", "plsql" }
-    },
-    {
       "hrsh7th/cmp-nvim-lua",
       ft = "lua"
     }
@@ -50,7 +46,6 @@ return {
         { name = "luasnip" },
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
-        { name = "vim-dadbod-completion" },
       },
       formatting = {
         format = function(_, vim_item)

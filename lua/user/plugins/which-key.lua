@@ -6,7 +6,6 @@ return {
       mode = { "n", "v" },
       { "<leader>a", group = "Active Plugins" },
       { "<leader>b", group = "Barbucue" },
-      { "<leader>d", group = "DadBod" },
       { "<leader>g", group = "Git" },
       { "<leader>l", group = "Lsp" },
       { "<leader>L", group = "Live Server" },
