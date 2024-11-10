@@ -11,5 +11,11 @@ return {
     "dmmulroy/ts-error-translator.nvim",
     ft = { "typescript", "tsx" },
     opts = {}
+  },
+  {
+    "barrett-ruth/import-cost.nvim",
+    ft = { "typescript", "tsx" },
+    opts = {},
+    build = "sh install.sh npm"
   }
 }
