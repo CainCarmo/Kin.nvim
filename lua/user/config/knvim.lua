@@ -3,7 +3,7 @@ _G.knvim = {}
 
 --> 🎨 Themes
 knvim.themes = {}
-knvim.themes.knvim = "catppuccin"
+knvim.themes.knvim = "catppuccin-macchiato"
 knvim.themes.lazy = { custom = knvim.themes.knvim, default = "habamax" }
 
 --> ⚓ Dashboard
