@@ -1,29 +1,17 @@
 return {
   "neovim/nvim-lspconfig",
   keys = {
-    { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",   desc = "Code Action" },
-    {
-      "<leader>lf",
-      "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
-      desc = "Format",
-    },
-    { "<leader>li", "<cmd>LspInfo<cr>",                         desc = "Info" },
-    { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<cr>",  desc = "Next Diagnostic" },
-    { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<cr>",  desc = "Prev Diagnostic" },
-    { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>",      desc = "CodeLens Action" },
-    { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", desc = "Quickfix" },
-    { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",        desc = "Rename" },
-  },
-  event = "BufReadPost",
-  dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-    "williamboman/mason.nvim"
+    { "<leader>li", "<cmd>LspInfo<CR>", desc = "Info" },
+    { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename" },
+    { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", desc = "Quickfix" },
+    { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code Action" },
+    { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<CR>", desc = "CodeLens Action" },
+    { "<leader>lj", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "Next Diagnostic" },
+    { "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "Prev Diagnostic" },
   },
   opts = {
     on_attach = function(client, bufnr)
-      if client.supports_method "textDocument/inlayHint" then
-        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-      end
+      if client.supports_method "textDocument/inlayHint" then vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
     end,
     common_capabilities = function()
       local status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
@@ -33,69 +21,65 @@ return {
 
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = {
-          "documentation",
-          "detail",
-          "additionalTextEdits",
-        }
+        properties = { "documentation", "detail", "additionalTextEdits" },
       }
 
       return capabilities
-    end
+    end,
+  },
+  event = "BufReadPre",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "williamboman/mason.nvim",
   },
   config = function(_, opts)
     local lspconfig = require "lspconfig"
     local servers = require("mason-lspconfig").get_installed_servers()
 
-    local diagnostics_setttings = {
+    vim.diagnostic.config {
       signs = {
         active = true,
         values = {
+          { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
           { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-          { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
-          { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
-          { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
-        }
+          { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+          { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+        },
       },
-      virtual_text = false,
-      update_in_insert = true,
       underline = true,
+      virtual_text = false,
       severity_sort = true,
+      update_in_insert = true,
       float = {
         focusable = true,
         style = "minimal",
         border = "rounded",
         source = "always",
         header = "",
-        prefix = ""
+        prefix = "",
       },
     }
 
-    vim.diagnostic.config(diagnostics_setttings)
-
     for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
-      vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+      vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = sign.name })
     end
 
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+    vim.lsp.handlers["textDocument/signatureHelp"] =
+      vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
     require("lspconfig.ui.windows").default_options.border = "rounded"
 
     for _, server in pairs(servers) do
       local config = {
         on_attach = opts.on_attach,
-        capabilities = opts.common_capabilities()
+        capabilities = opts.common_capabilities(),
       }
 
-      -- TODO: change path
-      local status, settings = pcall(require, "user.resources.lspconfig." .. server)
-
-      if status then
-        config = vim.tbl_deep_extend("force", settings, config)
-      end
+      local status, lspsettings = pcall(require, "user.utils.lsp." .. server)
+      if status then config = vim.tbl_deep_extend("force", lspsettings, config) end
 
       lspconfig[server].setup(config)
     end
-  end
+  end,
 }

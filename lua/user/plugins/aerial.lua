@@ -1,6 +1,5 @@
 return {
   "stevearc/aerial.nvim",
-  lazy = true,
   keys = {
     {
       "<leader>ls",
@@ -8,8 +7,8 @@ return {
         require("aerial").toggle()
       end,
       desc = "Symbols Outline",
-      mode = { "n", "v" }
-    }
+      mode = { "n", "v" },
+    },
   },
   opts = {
     show_guides = true,
@@ -23,5 +22,5 @@ return {
     },
     layout = { min_width = 28 },
     backends = { "lsp", "treesitter", "markdown", "man" },
-  }
+  },
 }

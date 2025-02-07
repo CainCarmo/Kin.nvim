@@ -1,5 +1,11 @@
 return {
-  "windwp/nvim-autopairs",
-  opts = { check_ts = true },
-  event = "InsertEnter"
+  "windwp/nvim-ts-autotag",
+  opts = {
+    opts = {
+      enable_close = true,
+      enable_rename = true,
+      enable_close_on_slash = true,
+    },
+  },
+  event = { "BufReadPre", "BufNewFile" },
 }

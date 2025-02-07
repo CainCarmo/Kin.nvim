@@ -2,95 +2,61 @@ return {
   "nvimdev/dashboard-nvim",
   lazy = false,
   keys = {
-    { "<leader>;", "<cmd>Dashboard<CR>", desc = "Open Dashboard", mode = { "n", "v" } }
+    { "<leader>;", "<cmd>Dashboard<CR>", desc = "Dashboard", mode = { "n", "v" } },
   },
   opts = function()
-    local function button(txt, action, icon, key)
+    local setup = {}
+
+    local function button(desc, action, icon, key)
       return {
-        desc       = " " .. txt .. string.rep(" ", 43 - #txt),
-        action     = action,
-        icon       = icon .. " ",
-        key        = key,
-        key_format = " %s"
+        desc = " " .. desc .. string.rep(" ", 43 - #desc),
+        action = action,
+        icon = icon:gsub(" ", "") .. " ",
+        key = key,
+        key_format = " %s",
       }
     end
 
-    local config = {
-      theme  = "doom",
-      hide   = { statusline = true },
-      config = {
-        header = vim.split(
-          string.rep("\n", 3)
-          .. table.concat(ascii.headers.knvim, "\n")
-          .. string.rep("\n", 2), "\n"
-        ),
-        center = {
-          button(
-            "New File",
-            "ene | startinsert",
-            icons.ui.NewFile,
-            "n"
-          ),
-          button(
-            "Find Files",
-            "Telescope find_files",
-            icons.ui.FindFile,
-            "f"
-          ),
-          button(
-            "Recent Files",
-            "Telescope oldfiles",
-            icons.ui.History,
-            "r"
-          ),
-          button(
-            "Lazy",
-            "Lazy",
-            icons.ui.List,
-            "l"
-          ),
-          button(
-            "Configuration",
-            "e ~/.config/nvim/init.lua",
-            icons.ui.Gear,
-            "c"
-          ),
-          button(
-            "Restore Session",
-            "lua require('persistence').load()",
-            icons.ui.Forward,
-            "p"
-          ),
-          button(
-            "Quit",
-            function() vim.api.nvim_input("<cmd>qa<cr>") end,
-            icons.ui.SignOut,
-            "q"
-          ),
-        },
-        footer = function()
-          local st = require("lazy").stats()
-          local ms = (math.floor(st.startuptime * 100 + 0.5) / 100)
+    setup.theme = "doom"
+    setup.hide = { statusline = false }
+    setup.config = {
+      header = vim.split(string.rep("\n", 3) .. table.concat(knvim.startup.header, "\n") .. string.rep("\n", 2), "\n"),
+      center = {
+        button("New File", "ene | startinsert", icons.ui.NewFile, "n"),
+        button("Find File", "Telescope find_files", icons.ui.FindFile, "f"),
+        button("Find Word", "Telescope live_grep", icons.ui.FindText, "w"),
+        button("Recent Files", "Telescope oldfiles", icons.ui.History, "r"),
+        button("Recent Sessions", "lua require('persistence').select()", icons.ui.Scopes, "s"),
+        button("Restore Sessions", "lua require('persistence').load()", icons.ui.Forward, "S"),
+        button("Configuration", "e " .. paths.root .. "/init.lua", icons.ui.Gear, "c"),
+        button("Quit", function()
+          require("persistence").stop()
+          vim.cmd [[ qa ]]
+        end, icons.ui.SignOut, "q"),
+      },
+      footer = function()
+        local st = require("lazy").stats()
+        local ms = (math.floor(st.startuptime * 100 + 0.5) / 100)
 
-          return { "📦 Kin.nvim loaded " .. st.loaded .. "/" .. st.count .. " plugins in " .. ms .. "ms" }
-        end
-      }
+        return knvim.startup.footer:isNullOrEmpty()
+            and { "📦 Kin.nvim loaded " .. st.loaded .. "/" .. st.count .. " plugins in " .. ms .. "ms" }
+          or { knvim.startup.footer }
+      end,
     }
 
     if vim.o.filetype == "lazy" then
       vim.api.nvim_create_autocmd("WinClosed", {
-        pattern = tostring(vim.api.nvim_get_current_win()),
         once = true,
+        pattern = tostring(vim.api.nvim_get_current_win()),
         callback = function()
-          vim.schedule(
-            function()
-              vim.api.nvim_exec_autocmds("UIEnter", { group = "dashboard" })
-            end
-          )
-        end
+          vim.schedule(function()
+            vim.api.nvim_exec_autocmds("UIEnter", { group = "dashboard" })
+          end)
+        end,
       })
     end
 
-    return config
-  end
+    return setup
+  end,
+  event = "VimEnter",
 }

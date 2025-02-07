@@ -5,17 +5,14 @@ return {
     spec = {
       mode = { "n", "v" },
       { "<leader>a", group = "Active Plugins" },
-      { "<leader>b", group = "Barbucue" },
+      { "<leader>b", group = "Winbar" },
+      { "<leader>f", group = "Search" },
       { "<leader>g", group = "Git" },
       { "<leader>l", group = "Lsp" },
-      { "<leader>L", group = "Live Server" },
-      { "<leader>m", group = "Multi Cursor" },
-      { "<leader>M", group = "Markdown Preview" },
-      { "<leader>n", group = "Noice" },
-      { "<leader>q", group = "Quit" },
-      { "<leader>f", group = "Telescope" },
-      { "<leader>s", group = "Todo Comments" },
-      { "<leader>y", group = "Yaml" }
+      { "<leader>n", group = "Notes" },
+      { "<leader>N", group = "Noice" },
+      { "<leader>s", group = "Sessions" },
+      { "<leader>w", group = "Web Development" },
     },
     win = {
       no_overlap = true,
@@ -24,13 +21,13 @@ return {
       title_pos = "center",
       zindex = 1000,
       bo = {},
-      wo = {}
+      wo = {},
     },
     disable = {
       buftypes = {},
-      filetypes = { "TelescopePrompt" }
+      filetypes = { "TelescopePrompt" },
     },
-    preset = "modern"
+    preset = "modern",
   },
   event = "VeryLazy",
 }

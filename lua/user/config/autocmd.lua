@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "json", "jsonc", "json5" },
   callback = function()
     vim.opt_local.conceallevel = 0
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
@@ -71,19 +71,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
   callback = function()
     local status_ok, luasnip = pcall(require, "luasnip")
-    if not status_ok then
-      return
-    end
-    if luasnip.expand_or_jumpable() then
-      vim.cmd [[silent! lua require("luasnip").unlink_current()]]
-    end
+    if not status_ok then return end
+    if luasnip.expand_or_jumpable() then vim.cmd [[silent! lua require("luasnip").unlink_current()]] end
   end,
 })
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
     vim.cmd.colorscheme("gruvbox")
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
@@ -92,9 +88,7 @@ vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
     local file = vim.api.nvim_buf_get_name(args.buf)
     local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
 
-    if not vim.g.ui_entered and args.event == "UIEnter" then
-      vim.g.ui_entered = true
-    end
+    if not vim.g.ui_entered and args.event == "UIEnter" then vim.g.ui_entered = true end
 
     if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
       vim.api.nvim_exec_autocmds("User", { pattern = "FilePost", modeline = false })
@@ -103,10 +97,8 @@ vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
       vim.schedule(function()
         vim.api.nvim_exec_autocmds("FileType", {})
 
-        if vim.g.editorconfig then
-          require("editorconfig").config(args.buf)
-        end
+        if vim.g.editorconfig then require("editorconfig").config(args.buf) end
       end)
     end
-  end
+  end,
 })

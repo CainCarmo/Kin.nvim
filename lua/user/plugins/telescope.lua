@@ -1,67 +1,66 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    lazy = true,
     keys = {
       {
         "<leader>fc",
         "<cmd>Telescope colorscheme<CR>",
-        desc = "Colorscheme"
+        desc = "Colorscheme",
       },
       {
         "<leader>fb",
         "<cmd>Telescope buffers previewer=true<cr>",
-        desc = "Find"
+        desc = "Find",
       },
       {
         "<leader>fg",
         "<cmd>Telescope git_branches<cr>",
-        desc = "Checkout branch"
+        desc = "Checkout branch",
       },
       {
         "<leader>fs",
         "<cmd>Telescope git_status<CR>",
-        desc = "Status"
+        desc = "Git Status",
       },
       {
         "<leader>ff",
         "<cmd>Telescope find_files<cr>",
-        desc = "Find files"
+        desc = "Find files",
       },
       {
         "<leader>ft",
         "<cmd>Telescope live_grep<cr>",
-        desc = "Find Text"
+        desc = "Find Text",
       },
       {
         "<leader>fh",
         "<cmd>Telescope help_tags<cr>",
-        desc = "Help"
+        desc = "Help",
       },
       {
         "<leader>fl",
         "<cmd>Telescope resume<cr>",
-        desc = "Last Search"
+        desc = "Last Search",
       },
       {
         "<leader>fr",
         "<cmd>Telescope oldfiles<cr>",
-        desc = "Recent File"
+        desc = "Recent File",
       },
       {
         "<leader>fn",
         function()
           require("telescope").extensions.notify.notify()
         end,
-        desc = "Open all notifications"
+        desc = "Open all notifications",
       },
       {
         "<leader>fd",
         function()
           require("notify").dismiss { silent = true, pending = true }
         end,
-        desc = "Dismiss all notifications"
-      }
+        desc = "Dismiss all notifications",
+      },
     },
     dependencies = { "nvim-telescope/telescope-fzf-native.nvim", "nvim-lua/plenary.nvim" },
     config = function()
@@ -85,7 +84,7 @@ return {
             "--column",
             "--smart-case",
             "--hidden",
-            "--glob=!.git/"
+            "--glob=!.git/",
           },
           mappings = {
             i = {
@@ -93,26 +92,26 @@ return {
               ["<C-p>"] = actions.cycle_history_prev,
 
               ["<C-j>"] = actions.move_selection_next,
-              ["<C-k>"] = actions.move_selection_previous
+              ["<C-k>"] = actions.move_selection_previous,
             },
             n = {
               ["<esc>"] = actions.close,
               ["j"] = actions.move_selection_next,
               ["k"] = actions.move_selection_previous,
-              ["q"] = actions.close
+              ["q"] = actions.close,
             },
           },
         },
         pickers = {
           live_grep = {
-            theme = "dropdown"
+            theme = "dropdown",
           },
           grep_string = {
-            theme = "dropdown"
+            theme = "dropdown",
           },
           find_files = {
             theme = "dropdown",
-            previewer = true
+            previewer = true,
           },
           buffers = {
             theme = "dropdown",
@@ -120,36 +119,36 @@ return {
             initial_mode = "normal",
             mappings = {
               i = {
-                ["<C-d>"] = actions.delete_buffer
+                ["<C-d>"] = actions.delete_buffer,
               },
               n = {
-                ["dd"] = actions.delete_buffer
-              }
-            }
+                ["dd"] = actions.delete_buffer,
+              },
+            },
           },
           planets = {
             show_moon = true,
-            show_pluto = true
+            show_pluto = true,
           },
           colorscheme = {
-            enable_preview = true
+            enable_preview = true,
           },
           lsp_references = {
             theme = "dropdown",
-            initial_mode = "normal"
+            initial_mode = "normal",
           },
           lsp_definitions = {
             theme = "dropdown",
-            initial_mode = "normal"
+            initial_mode = "normal",
           },
           lsp_declarations = {
             theme = "dropdown",
-            initial_mode = "normal"
+            initial_mode = "normal",
           },
           lsp_implementations = {
             theme = "dropdown",
-            initial_mode = "normal"
-          }
+            initial_mode = "normal",
+          },
         },
         extensions = {
           fzf = {
@@ -160,11 +159,11 @@ return {
           },
         },
       }
-    end
+    end,
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     lazy = true,
-    build = "make"
-  }
+    build = "make",
+  },
 }

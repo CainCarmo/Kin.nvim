@@ -155,6 +155,7 @@ _G.icons = {
     CircuitBoard = " ",
   },
   chars = {
+    k = "𝙆",
     tsu = "ツ",
     fire = "火"
   }

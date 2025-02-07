@@ -1,6 +1,5 @@
----Merge two tables and returns the result.
 ---@param target tablelib
----@param list tablelib
+---@param list table
 ---@return tablelib
 _G.table.merge = function(target, list)
   for _, v in pairs(list) do

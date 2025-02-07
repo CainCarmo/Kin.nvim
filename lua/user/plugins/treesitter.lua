@@ -5,9 +5,6 @@ return {
     opts = {
       indent = { enabled = true },
       highlight = { enabled = true },
-      ensure_installed = {
-        "lua"
-      },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -23,36 +20,45 @@ return {
           goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
           goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
           goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
-          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" }
-        }
-      }
+          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
+        },
+      },
     },
     event = "VeryLazy",
     build = ":TSUpdate",
     version = false,
+    dependencies = "rcarriga/nvim-notify",
     init = function(plugin)
       require("lazy.core.loader").add_to_rtp(plugin)
       require("nvim-treesitter.query_predicates")
     end,
     config = function(_, opts)
+      opts.ensure_installed = table.merge(knvim.langs.treesitter.names, {
+        "bash",
+        "editorconfig",
+        "json",
+        "lua",
+        "toml",
+        "yaml",
+      })
+
       require("nvim-treesitter.configs").setup(opts)
     end,
-    dependencies = "rcarriga/nvim-notify"
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     opts = { enable_autocmd = false },
     event = "VeryLazy",
-    dependencies = "nvim-treesitter/nvim-treesitter"
+    dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
     cmd = {
       "TSContextEnable",
       "TSContextToggle",
-      "TSContextDisable"
+      "TSContextDisable",
     },
     event = "VeryLazy",
-    dependencies = "nvim-treesitter/nvim-treesitter"
-  }
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
 }

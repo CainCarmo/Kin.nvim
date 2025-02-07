@@ -25,14 +25,7 @@ keymap("x", "p", [["_dP]])
 
 keymap({ "n", "o", "x" }, "<s-h>", "^", opts)
 keymap({ "n", "o", "x" }, "<s-l>", "g_", opts)
-
 keymap({ "n", "v" }, ";", ":", opts)
-
--- Verify
-keymap({ "n", "v" }, "<C-a>", "<cmd>%y+<CR>", opts)
-keymap({ "n", "v" }, "<C-c>", "<cmd>+y<CR>", opts)
--- #
-
 keymap({ "n", "v" }, "<C-s>", "<cmd>w<CR>", opts)
 keymap({ "n", "v" }, "<C-y>", "<C-r>", opts)
 keymap({ "n", "v" }, "<C-z>", "u", opts)

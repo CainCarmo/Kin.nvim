@@ -4,6 +4,6 @@ return {
     click = true,
     highlight = true,
     icons = icons.kind,
-    lsp = { auto_attach = true }
-  }
+    lsp = { auto_attach = true },
+  },
 }

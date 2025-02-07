@@ -7,7 +7,7 @@ if not vim.loop.fs_stat(lazypath) then
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable",
-    lazypath
+    lazypath,
   }
 end
 
@@ -15,17 +15,18 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup {
   spec = {
-    { import = "user.plugins" }
+    { import = "user.plugins" },
+    { import = "user.plugins.mini" },
   },
   install = {
-    colorscheme = { "gruvbox", "habamax" }
+    colorscheme = { knvim.theme.colorscheme, "habamax" },
   },
   ui = {
-    border = "rounded"
+    border = "rounded",
   },
   change_detection = {
     enabled = true,
-    notify = false
+    notify = false,
   },
   performance = {
     rtp = {
@@ -56,8 +57,8 @@ require("lazy").setup {
         "optwin",
         "compiler",
         "bugreport",
-        "ftplugin"
-      }
-    }
-  }
+        "ftplugin",
+      },
+    },
+  },
 }
