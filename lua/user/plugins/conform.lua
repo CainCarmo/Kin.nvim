@@ -5,7 +5,11 @@ return {
       timeout_ms = 200,
       lsp_format = "fallback",
     },
-    formatters_by_ft = {}
   },
-  event = "BufReadPost"
+  event = "BufReadPost",
+  config = function(_, opts)
+    opts.formatters_by_ft = knvim.langs.formatter.names
+
+    require("conform").setup(opts)
+  end,
 }

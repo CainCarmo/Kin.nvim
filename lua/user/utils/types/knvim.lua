@@ -9,7 +9,9 @@
 
 ---@class KnvimLangs
 ---@field lsp { names: string[], tools: string[] }
----@field treesitter { names: string[] }
+---@field linter { names: string[] }
+---@field formatter { names: table<string, string[]> }
+---@field treesitter { names: table<string, string[]> }
 
 ---@class Knvim
 ---@field theme KnvimTheme
