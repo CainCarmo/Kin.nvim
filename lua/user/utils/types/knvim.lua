@@ -12,6 +12,7 @@
 ---@field linter { names: string[] }
 ---@field formatter { names: table<string, string[]> }
 ---@field treesitter { names: table<string, string[]> }
+---@field debugger { adapters: table<string, table<string, string | tablelib>>[], configurations: table<string, table<string, string | tablelib | function>[]>[] }
 
 ---@class Knvim
 ---@field theme KnvimTheme

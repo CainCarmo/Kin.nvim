@@ -29,6 +29,7 @@ file.write(
     knvim.langs.linter = {}
     knvim.langs.formatter = {}
     knvim.langs.treesitter = {}
+    knvim.langs.debugger = {}
 
     -- For more headers arts check: lua/user/layout/ascii.lua
     knvim.startup.header = ascii.headers.default
@@ -45,6 +46,10 @@ file.write(
     -- To configure both, use the schema { k = v[] }, where k represents the desired filetype (use `echo getcompletion('', 'filetype')` to view accepted filetypes), and v is the list of corresponding linters/formatters.
     knvim.langs.linter.names = {}
     knvim.langs.formatter.names = {}
+
+    -- Check a list of all available adapters and configurations, see https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
+    knvim.langs.debugger.adapters = {}
+    knvim.langs.debugger.configurations = {}
 
     -- Check a list of all available languages, see https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
     knvim.langs.treesitter.names = {}

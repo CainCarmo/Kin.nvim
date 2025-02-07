@@ -6,6 +6,7 @@ return {
       mode = { "n", "v" },
       { "<leader>a", group = "Active Plugins" },
       { "<leader>b", group = "Winbar" },
+      { "<leader>d", group = "Debugger" },
       { "<leader>f", group = "Search" },
       { "<leader>g", group = "Git" },
       { "<leader>l", group = "Lsp" },
