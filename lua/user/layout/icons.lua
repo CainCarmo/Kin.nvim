@@ -157,6 +157,7 @@ _G.icons = {
   chars = {
     k = "𝙆",
     tsu = "ツ",
-    fire = "火"
-  }
+    fire = "火",
+    knvim = "🍡",
+  },
 }
