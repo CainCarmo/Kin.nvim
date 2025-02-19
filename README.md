@@ -8,21 +8,63 @@ Kin.nvim is a powerful [Neovim](https://neovim.io/) configuration, designed to d
 
 ## 🚧 Requirements
 
-- [Git](https://git-scm.com/downloads)
-- [Neovim 0.9.5+](https://github.com/neovim/neovim/blob/master/INSTALL.md)
-- A clipboard tool is necessary for the integration with the system clipboard (see [`Clipboard Tool`](https://neovim.io/doc/user/provider.html#clipboard-tool) for supported solutions)
-- Package Manager
-  - [pip](https://pypi.org/project/pip/)
-  - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-  - [cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
-- Tools
-  - [fzf](https://github.com/junegunn/fzf)
-  - [ripgrep](https://github.com/BurntSushi/ripgrep)
+### Prerequisites
 
-> [!NOTE]
-> For Windows users, it is necessary to use Powershell 7 or higher
+Ensure you have the following installed on your system:
+
+- **Git**: [Download](https://git-scm.com/downloads)
+- **Neovim 0.9.5+**: [Installation Guide](https://github.com/neovim/neovim/blob/master/INSTALL.md)
+- **Clipboard Tool**: Required for system clipboard integration. See [Clipboard Tool](https://neovim.io/doc/user/provider.html#clipboard-tool) for supported solutions.
+
+### Package Managers
+
+You will need one of the following package managers:
+
+- **pip**: [Installation Guide](https://pypi.org/project/pip/)
+- **npm**: [Installation Guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- **cargo**: [Installation Guide](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+
+### Additional Tools
+
+Make sure to have these tools installed:
+
+- **fzf**: [Download](https://github.com/junegunn/fzf)
+- **ripgrep**: [Download](https://github.com/BurntSushi/ripgrep)
+- **make**: Install via package manager
+  - **Ubuntu/Debian**: `sudo apt-get install build-essential`
+  - **Fedora**: `sudo dnf groupinstall 'Development Tools'`
+  - **Arch Linux(btw)**: `sudo pacman -S base-devel`
+  - **MacOS**: `xcode-select --install`
+  - **Windows**: `scoop install make`
 
 ## 🛠️ Installation
+
+> [!NOTE]
+> There are two ways to install Kin.nvim: manually or using a script.
+
+### Manual
+
+<details>
+<summary>Unix</summary>
+<br />
+
+1. Make a backup of your current nvim and shared folder
+
+```sh
+mv ~/.config/nvim ~/.config/nvim.bak
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+```
+
+2. Setup Kin.nvim
+
+```sh
+git clone --depth 1 https://github.com/CainCarmo/Kin.nvim.git ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+rm -rf ~/.config/nvim/.gitignore
+nvim
+```
+
+</details>
 
 <details>
 <summary>Windows</summary>
@@ -46,29 +88,21 @@ nvim
 
 </details>
 
-<br />
+### Script
 
-<details>
-<summary>Linux/MacOS</summary>
-<br />
+You can also use the provided installation scripts for a more automated setup:
 
-1. Make a backup of your current nvim and shared folder
+- For Unix-based systems, run the following command in your terminal:
 
 ```sh
-mv ~/.config/nvim ~/.config/nvim.bak
-mv ~/.local/share/nvim ~/.local/share/nvim.bak
+bash <(curl -s https://raw.githubusercontent.com/CainCarmo/Kin.nvim/main/utils/scripts/installer.sh)
 ```
 
-2. Setup Kin.nvim
+- For Windows systems, run the following command in PowerShell:
 
-```sh
-git clone --depth 1 https://github.com/CainCarmo/Kin.nvim.git ~/.config/nvim
-rm -rf ~/.config/nvim/.git
-rm -rf ~/.config/nvim/.gitignore
-nvim
+```pwsh
+pwsh -c "iwr https://raw.githubusercontent.com/CainCarmo/Kin.nvim/main/utils/scripts/install.ps1 -UseBasicParsing | iex"
 ```
-
-</details>
 
 ## 📂 File Structure
 
@@ -76,25 +110,45 @@ You may add or change plugins in `lua/user/plugins`. All files there
 will be automatically loaded by [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```txt
-~/.config/nvim
+~/.config/nvim or ~/AppData/Local/nvim
+│
 ├── lua
 │   └── user
 │       ├── config
-│       │   ├── autocmds.lua
-│       │   ├── keymaps.lua
-│       │   └── options.lua
+│       │   ├── autocmd.lua
+│       │   ├── init.lua
+│       │   ├── keymap.lua
+│       │   └── option.lua
 │       ├── helpers
-│       │   └── extensions
-│       │       └── table.lua
-│       ├── interface
+│       │   ├── extensions
+│       │   │    ├── string.lua
+│       │   │    └── table.lua
+│       │   ├── file.lua
+│       │   └── paths.lua
+│       ├── layout
 │       │   ├── ascii.lua
 │       │   └── icons.lua
 │       ├── packager
-│       │   └── init.lua
-│       └── plugins
-│           ├── spec1.lua
-│           ├── spec2.lua
-│           └── ...
+│       │    └── init.lua
+│       ├── plugins
+│       │    ├── spec1.lua
+│       │    ├── spec2.lua
+│       │    └── ...
+│       ├── utils
+│       │    ├── lsp
+│       │    │   ├── jsonls.lua
+│       │    │   ├── lua_ls.lua
+│       │    │   └── yamlls.lua
+│       │    └── types
+│       │        ├── ascii.lua
+│       │        └── knvim.lua
+│       └── knvim.lua
+├── utils
+│   └── scripts
+│       ├── installer.ps1
+│       ├── installer.sh
+│       ├── uninstaller.ps1
+│       └── uninstaller.sh
 │
 └── init.lua
 ```
@@ -117,4 +171,4 @@ The development of Kin.nvim was inspired by incredible projects that have my sin
 ![][footer_wave]
 
 [//]: Links
-[footer_wave]: https://capsule-render.vercel.app/api?type=waving&height=100&color=d5c4a1&reversal=true&section=footer
+[footer_wave]: https://capsule-render.vercel.app/api?type=waving&height=100&color=919F50&reversal=true&section=footer
