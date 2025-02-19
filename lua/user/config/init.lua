@@ -13,9 +13,7 @@ require "user.config.keymap"
 require "user.config.option"
 
 --> ⚒ Validate knvim
-local file = require "user.helpers.file"
-
-file.write(
+require("user.helpers.file").write(
   paths.root .. "/lua/user/knvim.lua",
   [[
     ---@class Knvim
