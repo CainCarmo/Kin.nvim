@@ -9,7 +9,7 @@
 
 ---@class KnvimLangs
 ---@field lsp { names: string[], tools: string[] }
----@field linter { names: string[] }
+---@field linter { names: table<string, string[]> }
 ---@field formatter { names: table<string, string[]> }
 ---@field treesitter { names: table<string, string[]> }
 ---@field debugger { adapters: table<string, table<string, string | tablelib>>[], configurations: table<string, table<string, string | tablelib | function>[]>[] }
