@@ -37,6 +37,9 @@ Make sure to have these tools installed:
   - **MacOS**: `xcode-select --install`
   - **Windows**: `scoop install make`
 
+> [!IMPORTANT]
+> For Windows users, it is necessary to use Powershell 7 or higher
+
 ## 🛠️ Installation
 
 > [!NOTE]
@@ -103,6 +106,32 @@ bash <(curl -s https://raw.githubusercontent.com/CainCarmo/Kin.nvim/main/utils/s
 ```pwsh
 pwsh -c "iwr https://raw.githubusercontent.com/CainCarmo/Kin.nvim/main/utils/scripts/install.ps1 -UseBasicParsing | iex"
 ```
+
+## 📜 Knvim File
+
+The `knvim.lua` file is the main configuration file for `Kin.nvim`. It is responsible for setting global Neovim options, configuring plugins, and defining themes and other visual elements. Below is a detailed description of how to use and configure this file.
+
+> [!TIP]
+> The `knvim.lua` file is located in the `lua/user/knvim.lua` directory. It is automatically loaded by Neovim during startup.
+
+| Option                                | Default                 | Description                                           |
+| ------------------------------------- | ----------------------- | ----------------------------------------------------- |
+| `knvim.startup.header`                | `ascii.headers.default` | Defines the ASCII header displayed at Neovim startup. |
+| `knvim.startup.footer`                | `""`                    | Defines the ASCII footer displayed at Neovim startup. |
+| `knvim.theme.colorscheme`             | `"gruvbox"`             | Sets the default color scheme for Neovim.             |
+| `knvim.langs.lsp.names`               |                         | List of LSP servers to be configured.                 |
+| `knvim.langs.lsp.tools`               |                         | Additional tools for LSP support.                     |
+| `knvim.langs.linter.names`            |                         | List of linters to be configured.                     |
+| `knvim.langs.formatter.names`         |                         | List of formatters to be configured.                  |
+| `knvim.langs.treesitter.names`        |                         | Languages supported by Treesitter.                    |
+| `knvim.langs.debugger.adapters`       |                         | Debug adapters to be configured.                      |
+| `knvim.langs.debugger.configurations` |                         | Debug configurations specific to each language.       |
+
+> [!NOTE]
+> For a comprehensive overview of all available types, please refer to the `lua/user/utils/types/knvim.lua` file.
+
+> [!IMPORTANT]
+> Ensure that you review and update the `knvim.lua` file according to your specific requirements and preferences. This will help you get the most out of Kin.nvim's features and customization options.
 
 ## 📂 File Structure
 
