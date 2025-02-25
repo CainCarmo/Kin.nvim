@@ -8,4 +8,4 @@ foreach ($path in $paths) {
 }
 
 git clone https://github.com/CainCarmo/Kin.nvim.git --depth 1 "$env:USERPROFILE/AppData/Local/nvim" &&
-Set-Location -Path "$env:USERPROFILE/AppData/Local/nvim" && nvim
+Set-Location -Path "$env:USERPROFILE/AppData/Local/nvim" && Remove-Item -Path "$env:USERPROFILE/AppData/Local/nvim/.git" -Recurse -Force && nvim

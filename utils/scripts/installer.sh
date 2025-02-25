@@ -17,7 +17,7 @@ if [ -d "$HOME/.cache/nvim" ]; then
 fi
 
 if git clone https://github.com/CainCarmo/Kin.nvim.git --depth 1 "$HOME/.config/nvim"; then
-  cd "$HOME/.config/nvim" && nvim
+  cd "$HOME/.config/nvim" && rm -rf ".git"  && nvim
 else
   echo "Failed to clone the repository. Exiting."
   exit 1
