@@ -6,6 +6,15 @@ Kin.nvim is a powerful [Neovim](https://neovim.io/) configuration, designed to d
 
 [//]: Content
 
+## 🏆 Showcase
+
+![Knvim Dashboard][ft_dashboard]
+![Knvim File][ft_file]
+![Knvim Autocomplete][ft_cmp]
+![Knvim Keybinds][ft_keybinds]
+![Knvim Telescope (fzf)][ft_telescope]
+![Knvim Filetree][ft_filetree]
+
 ## 🚧 Requirements
 
 ### Prerequisites
@@ -200,4 +209,16 @@ The development of Kin.nvim was inspired by incredible projects that have my sin
 ![][footer_wave]
 
 [//]: Links
+
+<!-- Layout -->
+
 [footer_wave]: https://capsule-render.vercel.app/api?type=waving&height=100&color=919F50&reversal=true&section=footer
+
+<!-- Images -->
+
+[ft_cmp]: ./assets/images/cmp.png
+[ft_dashboard]: ./assets/images/dashboard.png
+[ft_file]: ./assets/images/file.png
+[ft_filetree]: ./assets/images/filetree.png
+[ft_keybinds]: ./assets/images/keybinds.png
+[ft_telescope]: ./assets/images/telescope.png
