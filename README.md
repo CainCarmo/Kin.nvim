@@ -191,7 +191,7 @@ will be automatically loaded by [lazy.nvim](https://github.com/folke/lazy.nvim)
 └── init.lua
 ```
 
-## Credits
+## 🌟 Credits
 
 The development of Kin.nvim was inspired by incredible projects that have my sincere thanks to the following repositories:
 
