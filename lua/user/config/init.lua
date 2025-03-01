@@ -7,11 +7,6 @@ require "user.helpers.paths"
 require "user.helpers.extensions.string"
 require "user.helpers.extensions.table"
 
---> ⚙️ Configs
-require "user.config.autocmd"
-require "user.config.keymap"
-require "user.config.option"
-
 --> ⚒ Validate knvim
 require("user.helpers.file").write(
   paths.root .. "/lua/user/knvim.lua",
@@ -56,3 +51,8 @@ knvim.langs.treesitter.names = {}
 
 --> 📦 Inicializate Knvim
 require "user.knvim"
+
+--> ⚙️ Configs
+require "user.config.autocmd"
+require "user.config.keymap"
+require "user.config.option"
