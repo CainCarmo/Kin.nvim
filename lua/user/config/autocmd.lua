@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
-    vim.cmd.colorscheme("gruvbox")
+    vim.cmd.colorscheme(knvim.theme.colorscheme)
   end,
 })
 
