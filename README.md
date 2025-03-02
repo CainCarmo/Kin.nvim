@@ -2,6 +2,28 @@
 
 <h1 align="center">🍡 Kin.nvim</h1>
 
+<div align="center">
+  <a href="https://github.com/CainCarmo/Kin.nvim?tab=readme-ov-file#-showcase">Showcase</a>
+  <span> • </span>
+  <a href="https://github.com/CainCarmo/Kin.nvim?tab=readme-ov-file#-requirements">Requirements</a>
+  <span> • </span>
+  <a href="https://github.com/CainCarmo/Kin.nvim?tab=readme-ov-file#-installation">Installation</a>
+  <span> • </span>
+  <a href="https://github.com/CainCarmo/Kin.nvim?tab=readme-ov-file#-knvim-file">Knvim File</a>
+  <span> • </span>
+  <a href="https://github.com/CainCarmo/Kin.nvim?tab=readme-ov-file#-file-structure">File Structure</a>
+  <span> • </span>
+  <a href="https://github.com/CainCarmo/Kin.nvim?tab=readme-ov-file#-credits">Credits</a>
+</div>
+
+<div align="center">
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/CainCarmo/Kin.nvim?style=for-the-badge&logo=konva&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
+  <img alt="License" src="https://img.shields.io/github/license/CainCarmo/Kin.nvim?style=for-the-badge&logo=konva&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
+  <img alt="Stars" src="https://img.shields.io/github/stars/CainCarmo/Kin.nvim?style=for-the-badge&logo=konva&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
+  <img alt="Issues" src="https://img.shields.io/github/issues/CainCarmo/Kin.nvim?style=for-the-badge&logo=bilibili&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
+  <img alt="Repo Size" src="https://img.shields.io/github/repo-size/CainCarmo/Kin.nvim?color=%23DDB6F2&label=SIZE&logo=semanticweb&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
+</div>
+
 Kin.nvim is a powerful [Neovim](https://neovim.io/) configuration, designed to deliver an efficient and optimized experience across any language. It offers the flexibility to be customized for specific languages, adapting to your workflow and maximizing your productivity.
 
 [//]: Content
