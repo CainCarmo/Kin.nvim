@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
 backup_knvim() {
-  echo ""
-  echo " 🍡 Kin.nvim Uninstaller "
-  echo "─────────────────────────"
-  echo ""
-
   read -n 1 -r -p "Do you want to backup your configuration? [y/N] " confirm_backup
   echo ""
 
@@ -53,6 +48,11 @@ backup_knvim() {
 }
 
 uninstaller() {
+  echo ""
+  echo " 🍡 Kin.nvim Uninstaller "
+  echo "─────────────────────────"
+  echo ""
+
   backup_knvim
 
   if [ -d "$HOME/.config/nvim" ]; then

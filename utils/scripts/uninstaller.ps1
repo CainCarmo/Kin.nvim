@@ -1,11 +1,6 @@
 $knvim_paths = @("$env:LOCALAPPDATA/nvim", "$env:LOCALAPPDATA/nvim-data")
 
 function BackupKnvim {
-  Write-Host ""
-  Write-Host " 🍡 Kin.nvim Uninstaller "
-  Write-Host "─────────────────────────"
-  Write-Host ""
-
   $confirm_backup = Read-Host "Do you want to backup your configuration? [y/N] "
   Write-Host ""
 
@@ -51,6 +46,11 @@ function BackupKnvim {
 }
 
 function Uninstaller {
+  Write-Host ""
+  Write-Host " 🍡 Kin.nvim Uninstaller "
+  Write-Host "─────────────────────────"
+  Write-Host ""
+
   BackupKnvim
 
   foreach ($path in $knvim_paths) {
