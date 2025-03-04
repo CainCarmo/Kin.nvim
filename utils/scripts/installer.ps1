@@ -6,13 +6,20 @@ function BackupManager {
     [string]$backup_path
   )
 
-  Get-ChildItem -Path $backup_path -Recurse -File | ForEach-Object {
-    $destination = $_.FullName -replace [regex]::Escape($backup_path), $knvim_path
+  if (Test-Path -Path "$backup_path/knvim.lua") {
+    Copy-Item -Path "$backup_path/knvim.lua" -Destination "$knvim_path/lua/user/knvim.lua" -Force
 
-    New-Item -ItemType Directory -Path (Split-Path -Parent $destination) -Force | Out-Null
-    Copy-Item -Path $_.FullName -Destination $destination -Force
+    Write-Host $((Test-Path -Path "$knvim_path/lua/user/knvim.lua") ? "✔ File restored: $knvim_path/lua/user/knvim.lua" : "🗙 Failed to restore file: $knvim_path/lua/user/knvim.lua")
+  }
+  else {
+    Get-ChildItem -Path $backup_path -Recurse -File | ForEach-Object {
+      $destination = $_.FullName -replace [regex]::Escape($backup_path), $knvim_path
 
-    Write-Host $((Test-Path -Path $destination) ? "✔ Backup successful. File saved at '$destination'." : "⚠ Backup failed. File not saved at '$destination'.")
+      New-Item -ItemType Directory -Path (Split-Path -Parent $destination) -Force | Out-Null
+      Copy-Item -Path $_.FullName -Destination $destination -Force
+
+      Write-Host $((Test-Path -Path $destination) ? "✔ Backup successful. File saved at '$destination'." : "⚠ Backup failed. File not saved at '$destination'.")
+    }
   }
 }
 

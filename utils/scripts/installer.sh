@@ -4,14 +4,20 @@ backup_manager() {
   knvim_path="$1"
   backup_path="$2"
 
-  find "$backup_path" -type f | while read -r file; do
-    destination="${file/$backup_path/$knvim_path}"
+  if [[ -f "$backup_path/knvim.lua" ]]; then
+    cp -p "$backup_path/knvim.lua" "$knvim_path/lua/user/knvim.lua"
 
-    mkdir -p "$(dirname "$destination")"
-    cp -p "$file" "$destination"
+    [[ -f "$knvim_path/lua/user/knvim.lua" ]] && echo "✔ File restored: $knvim_path/lua/user/knvim.lua" || echo "🗙 Failed to restore file: $knvim_path/lua/user/knvim.lua"
+  else
+    find "$backup_path" -type f | while read -r file; do
+      destination="${file/$backup_path/$knvim_path}"
 
-    [[ -f "$destination" ]] && echo "✔ File restored: $destination" || echo "🗙 Failed to restore file: $destination"
-  done
+      mkdir -p "$(dirname "$destination")"
+      cp -p "$file" "$destination"
+
+      [[ -f "$destination" ]] && echo "✔ File restored: $destination" || echo "🗙 Failed to restore file: $destination"
+    done
+  fi
 }
 
 backup_checker() {
