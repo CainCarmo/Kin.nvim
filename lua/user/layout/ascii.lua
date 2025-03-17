@@ -1,4 +1,4 @@
----@class Ascii
+---@type Ascii
 _G.ascii = {}
 
 -- 📦 Explict ascii

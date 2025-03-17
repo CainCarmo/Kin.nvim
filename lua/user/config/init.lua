@@ -11,7 +11,7 @@ require "user.helpers.extensions.table"
 require("user.helpers.file").write(
   paths.root .. "/lua/user/knvim.lua",
   [[
----@class Knvim
+---@type Knvim
 _G.knvim = {}
 
 -- 📦 Explict knvim
