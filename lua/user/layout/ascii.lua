@@ -1,7 +1,3 @@
----@type Ascii
-_G.ascii = {}
-
--- 📦 Explict ascii
 ascii.headers = {}
 
 ascii.headers.default = {
