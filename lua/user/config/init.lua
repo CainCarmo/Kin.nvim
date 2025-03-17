@@ -1,7 +1,5 @@
 --> 🌐 Globals
-require "user.layout.ascii"
-require "user.layout.icons"
-require "user.helpers.paths"
+require "user.config.global"
 
 --> 📦 Modules
 require "user.helpers.extensions.string"
