@@ -3,7 +3,7 @@ require("user.autoload")
 
 --> ⚒ Generate knvim
 require("user.helpers.file").write(
-  paths.root .. "/lua/user/knvim.lua",
+  vim.fn.stdpath("config") .. "/lua/user/knvim.lua",
   [[
 ---@type Knvim
 _G.knvim = {}

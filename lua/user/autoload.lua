@@ -2,7 +2,6 @@ local M = {
   --> Load global variables
   "user.config.global",
   --> Load helpers functions
-  "user.helpers.paths",
   "user.helpers.extensions.string",
   "user.helpers.extensions.table",
   --> Load layout variables

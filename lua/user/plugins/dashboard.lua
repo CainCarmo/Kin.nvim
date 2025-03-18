@@ -28,7 +28,7 @@ return {
         button("Recent Files", "Telescope oldfiles", icons.ui.History, "r"),
         button("Recent Sessions", "lua require('persistence').select()", icons.ui.Scopes, "s"),
         button("Restore Sessions", "lua require('persistence').load()", icons.ui.Forward, "S"),
-        button("Configuration", "e " .. paths.root .. "/init.lua", icons.ui.Gear, "c"),
+        button("Configuration", "e " .. vim.fn.stdpath("config") .. "/init.lua", icons.ui.Gear, "c"),
         button("Quit", function()
           require("persistence").stop()
           vim.cmd [[ qa ]]
