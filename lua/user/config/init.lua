@@ -2,6 +2,7 @@
 require "user.config.global"
 
 --> 📦 Modules
+require "user.helpers.paths"
 require "user.helpers.extensions.string"
 require "user.helpers.extensions.table"
 
