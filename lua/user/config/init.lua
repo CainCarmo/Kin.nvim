@@ -1,6 +1,3 @@
---> ⚙️ Load user configuration
-require("user.autoload")
-
 --> ⚒ Generate knvim
 require("user.helpers.file").write(
   vim.fn.stdpath("config") .. "/lua/user/knvim.lua",
@@ -42,3 +39,6 @@ knvim.langs.debugger.configurations = {}
 knvim.langs.treesitter.names = {}
   ]]
 )
+
+--> ⚙️ Load user configuration
+require("user.autoload")

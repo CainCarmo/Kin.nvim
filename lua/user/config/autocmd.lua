@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   callback = function()
-    vim.cmd.colorscheme(knvim.theme.colorscheme)
+    vim.cmd.colorscheme(knvim and knvim.theme.colorscheme or "habamax")
   end,
 })
 

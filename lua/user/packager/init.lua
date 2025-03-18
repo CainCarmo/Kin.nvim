@@ -19,7 +19,7 @@ require("lazy").setup {
     { import = "user.plugins.mini" },
   },
   install = {
-    colorscheme = { knvim.theme.colorscheme, "habamax" },
+    colorscheme = { knvim and knvim.theme.colorscheme, "habamax" },
   },
   ui = {
     border = "rounded",
