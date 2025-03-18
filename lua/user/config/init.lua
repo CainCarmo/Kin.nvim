@@ -1,12 +1,7 @@
---> 🌐 Globals
-require "user.config.global"
+--> ⚙️ Load user configuration
+require("user.autoload")
 
---> 📦 Modules
-require "user.helpers.paths"
-require "user.helpers.extensions.string"
-require "user.helpers.extensions.table"
-
---> ⚒ Validate knvim
+--> ⚒ Generate knvim
 require("user.helpers.file").write(
   paths.root .. "/lua/user/knvim.lua",
   [[
@@ -47,11 +42,3 @@ knvim.langs.debugger.configurations = {}
 knvim.langs.treesitter.names = {}
   ]]
 )
-
---> 📦 Inicializate Knvim
-require "user.knvim"
-
---> ⚙️ Configs
-require "user.config.autocmd"
-require "user.config.keymap"
-require "user.config.option"
