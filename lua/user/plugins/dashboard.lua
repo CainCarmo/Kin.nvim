@@ -23,9 +23,18 @@ return {
       header = vim.split(string.rep("\n", 3) .. table.concat(knvim.startup.header, "\n") .. string.rep("\n", 2), "\n"),
       center = {
         button("New File", "ene | startinsert", icons.ui.NewFile, "n"),
-        button("Find File", "Telescope find_files", icons.ui.FindFile, "f"),
-        button("Find Word", "Telescope live_grep", icons.ui.FindText, "w"),
-        button("Recent Files", "Telescope oldfiles", icons.ui.History, "r"),
+        button("Find File", function()
+          vim.cmd [[ Lazy load telescope.nvim ]]
+          vim.cmd [[ Telescope find_files ]]
+        end, icons.ui.FindFile, "f"),
+        button("Find Word", function()
+          vim.cmd [[ Lazy load telescope.nvim ]]
+          vim.cmd [[ Telescope live_grep ]]
+        end, icons.ui.FindText, "w"),
+        button("Recent Files", function()
+          vim.cmd [[ Lazy load telescope.nvim ]]
+          vim.cmd [[ Telescope oldfiles ]]
+        end, icons.ui.History, "r"),
         button("Recent Sessions", "lua require('persistence').select()", icons.ui.Scopes, "s"),
         button("Restore Sessions", "lua require('persistence').load()", icons.ui.Forward, "S"),
         button("Configuration", "e " .. vim.fn.stdpath("config") .. "/init.lua", icons.ui.Gear, "c"),
