@@ -26,7 +26,7 @@ return {
       lualine_z = {},
     },
   },
-  event = "BufWinEnter",
+  event = "VeryLazy",
   config = function(_, opts)
     local helper = {}
 
@@ -223,7 +223,7 @@ return {
       function()
         local message = ""
 
-        for _, client in ipairs(vim.lsp.get_active_clients()) do
+        for _, client in ipairs(vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })) do
           if client.config.filetypes and vim.tbl_contains(client.config.filetypes, vim.bo.filetype) then
             return client.name
           end
