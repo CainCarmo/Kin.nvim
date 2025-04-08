@@ -37,32 +37,27 @@ return {
     local servers = require("mason-lspconfig").get_installed_servers()
 
     vim.diagnostic.config {
-      signs = {
-        active = true,
-        values = {
-          { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-          { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-          { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
-          { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
-        },
-      },
       underline = true,
       virtual_text = false,
       severity_sort = true,
       update_in_insert = true,
       float = {
-        focusable = true,
         style = "minimal",
-        border = "rounded",
         source = "always",
+        border = "rounded",
         header = "",
         prefix = "",
+        focusable = true,
+      },
+      signs = {
+        text = {
+          [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+          [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+          [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+          [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
+        },
       },
     }
-
-    for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
-      vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = sign.name })
-    end
 
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
     vim.lsp.handlers["textDocument/signatureHelp"] =
