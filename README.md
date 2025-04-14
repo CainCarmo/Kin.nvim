@@ -21,7 +21,7 @@
 <div align="center">
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/CainCarmo/Kin.nvim?style=for-the-badge&logo=konva&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
   <img alt="License" src="https://img.shields.io/github/license/CainCarmo/Kin.nvim?style=for-the-badge&logo=konva&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
-  <img alt="Stars" src="https://img.shields.io/github/stars/CainCarmo/Kin.nvim?style=for-the-badge&logo=konva&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
+  <img alt="Stars" src="https://img.shields.io/github/stars/CainCarmo/Kin.nvim?style=for-the-badge&logo=konva&color=C69ff5&logoColor=D9E0EE&labelColor=302D41" />
   <img alt="Issues" src="https://img.shields.io/github/issues/CainCarmo/Kin.nvim?style=for-the-badge&logo=bilibili&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
   <img alt="Repo Size" src="https://img.shields.io/github/repo-size/CainCarmo/Kin.nvim?color=%23DDB6F2&label=SIZE&logo=semanticweb&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
 </div>
