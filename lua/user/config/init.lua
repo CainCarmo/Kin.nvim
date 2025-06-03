@@ -2,9 +2,6 @@
 require("user.helpers.file").write(
   vim.fn.stdpath("config") .. "/lua/user/knvim.lua",
   [[
----@type Knvim
-_G.knvim = {}
-
 -- 📦 Explict knvim
 knvim.startup = {}
 knvim.theme = {}
@@ -37,7 +34,7 @@ knvim.langs.debugger.configurations = {}
 
 -- Check a list of all available languages, see https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
 knvim.langs.treesitter.names = {}
-  ]]
+]]
 )
 
 --> ⚙️ Load user configuration
