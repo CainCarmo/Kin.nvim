@@ -5,8 +5,12 @@ return {
       section_separators = "",
       component_separators = "",
       theme = {
-        normal = { c = { fg = "", bg = "" } },
-        inactive = { c = { fg = "", bg = "" } },
+        normal = {
+          c = { fg = colors["min-theme"].dark.fg1, bg = colors["min-theme"].dark.bg0 },
+        },
+        inactive = {
+          c = { fg = colors["min-theme"].dark.fg1, bg = colors["min-theme"].dark.bg0 },
+        },
       },
     },
     sections = {
@@ -28,59 +32,10 @@ return {
   },
   event = "VeryLazy",
   config = function(_, opts)
-    local helper = {}
+    local helpers = {}
+    local theme = colors["min-theme"].dark
 
-    helper.colors = {}
-    helper.colors.bg = "504945"
-    helper.colors.fg = "ebdbb2"
-    helper.colors.white = "fbf1c7"
-    helper.colors.black = "3c3836"
-
-    helper.colors.light = {}
-    helper.colors.light.red = "fb4934"
-    helper.colors.light.grey = "a89984"
-    helper.colors.light.aqua = "8ec07c"
-    helper.colors.light.blue = "83a598"
-    helper.colors.light.green = "b8bb26"
-    helper.colors.light.yellow = "fabd2f"
-    helper.colors.light.purple = "d3869b"
-    helper.colors.light.orange = "fe8019"
-
-    helper.colors.dark = {}
-    helper.colors.dark.red = "cc241d"
-    helper.colors.dark.grey = "928374"
-    helper.colors.dark.aqua = "689d6a"
-    helper.colors.dark.blue = "458588"
-    helper.colors.dark.green = "98971a"
-    helper.colors.dark.yellow = "d79921"
-    helper.colors.dark.purple = "b16286"
-    helper.colors.dark.orange = "d65d0e"
-
-    opts.options.theme.normal = {
-      c = { fg = helper.colors.fg, bg = helper.colors.bg },
-    }
-    opts.options.theme.inactive = {
-      c = { fg = helper.colors.fg, bg = helper.colors.bg },
-    }
-
-    opts.sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {},
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {},
-    }
-    opts.inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {},
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {},
-    }
-
-    helper.sections = {
+    helpers.sections = {
       ins_left = function(component)
         table.insert(opts.sections.lualine_c, component)
       end,
@@ -89,7 +44,7 @@ return {
       end,
     }
 
-    helper.conditions = {
+    helpers.conditions = {
       hide_in_width = function()
         return vim.fn.winwidth(0) > 80
       end,
@@ -103,123 +58,67 @@ return {
       end,
     }
 
-    --> Left side
-    helper.sections.ins_left {
+    --> Left
+    helpers.sections.ins_left {
       function()
-        return "▊"
+        return string.upper(vim.fn.mode())
       end,
-      color = { bg = helper.colors.black, fg = helper.colors.light.green },
-      padding = { left = 0, right = 1 },
+      color = { bg = theme.fg1, fg = theme.bg1, gui = "bold" },
     }
 
-    helper.sections.ins_left {
-      function()
-        return icons.chars.k
-      end,
-      color = function()
-        local modes = {
-          n = helper.colors.dark.red,
-          t = helper.colors.dark.red,
-          v = helper.colors.light.blue,
-          V = helper.colors.light.blue,
-          r = helper.colors.light.cyan,
-          i = helper.colors.light.green,
-          s = helper.colors.light.orange,
-          S = helper.colors.light.orange,
-          R = helper.colors.light.violet,
-          c = helper.colors.light.magenta,
-          no = helper.colors.light.red,
-          cv = helper.colors.light.red,
-          ce = helper.colors.light.red,
-          rm = helper.colors.light.cyan,
-          Rv = helper.colors.light.violet,
-          ic = helper.colors.light.yellow,
-          ["!"] = helper.colors.light.red,
-          [""] = helper.colors.light.blue,
-          [""] = helper.colors.light.orange,
-          ["r?"] = helper.colors.light.cyan,
-        }
-
-        return { bg = helper.colors.black, fg = modes[vim.fn.mode()] }
-      end,
-      padding = { right = 1 },
-    }
-
-    helper.sections.ins_left {
-      function()
-        return "Kin.nvim"
-      end,
-      separator = { right = "" },
-      color = { bg = helper.colors.black, fg = helper.colors.dark.green, gui = "bold" },
-    }
-
-    helper.sections.ins_left {
+    helpers.sections.ins_left {
       "branch",
       icon = icons.git.Branch,
-      color = { bg = helper.colors.dark.green, fg = helper.colors.black, gui = "bold" },
-      separator = { right = "" },
+      color = { bg = theme.bg1, fg = theme.purple },
     }
 
-    helper.sections.ins_left {
+    helpers.sections.ins_left {
       "diagnostics",
-      cond = helper.conditions.hide_in_width,
+      cond = helpers.conditions.hide_in_width,
+      color = { bg = theme.bg1 },
       sources = { "nvim_lsp", "nvim_diagnostic" },
-      symbols = { info = " ", warn = " ", error = " " },
+      symbols = {
+        info = icons.diagnostics.BoldInformation .. " ",
+        warn = icons.diagnostics.BoldWarning .. " ",
+        error = icons.diagnostics.BoldError .. " ",
+      },
       diagnostics_color = {
-        color_info = { fg = helper.colors.light.cyan },
-        color_warn = { fg = helper.colors.light.yellow },
-        color_error = { fg = helper.colors.light.red },
+        color_info = { fg = theme.blue },
+        color_warn = { fg = theme.orange },
+        color_error = { fg = theme.red },
       },
     }
 
-    --> Separator
-    helper.sections.ins_left {
-      function()
-        return "%="
-      end,
-    }
-
-    --> Center side
-    helper.sections.ins_left {
-      "filetype",
-      icon_only = true,
-      separator = { left = "" },
-      color = { bg = helper.colors.black },
-      cond = helper.conditions.hide_in_width or helper.conditions.buffer_not_empty,
-    }
-
-    helper.sections.ins_left {
+    helpers.sections.ins_left {
       "filename",
-      path = 4,
+      path = 1,
       file_status = true,
       newfile_status = true,
-      color = { bg = helper.colors.black },
-      separator = { left = "", right = "" },
-      cond = helper.conditions.hide_in_width or helper.conditions.buffer_not_empty,
+      cond = helpers.conditions.hide_in_width and helpers.conditions.buffer_not_empty,
+      color = { fg = theme.fg3 },
     }
 
-    helper.sections.ins_left {
+    helpers.sections.ins_left {
       "filesize",
-      separator = { right = "" },
-      color = { bg = helper.colors.black, fg = helper.colors.dark.green },
-      cond = helper.conditions.hide_in_width or helper.conditions.buffer_not_empty,
+      cond = helpers.conditions.hide_in_width and helpers.conditions.buffer_not_empty,
+      color = { fg = theme.fg3 },
+      padding = { left = -2 },
     }
 
-    --> Right side
-    helper.sections.ins_right {
+    --> Right
+    helpers.sections.ins_right {
       "searchcount",
-      cond = helper.conditions.hide_in_width,
-      color = { fg = helper.colors.purple },
+      cond = helpers.conditions.hide_in_width,
+      color = { fg = theme.orange },
     }
 
-    helper.sections.ins_right {
+    helpers.sections.ins_right {
       "o:encoding",
       fmt = string.upper,
-      separator = { left = "" },
-      color = { bg = helper.colors.black, fg = helper.colors.light.green, gui = "bold" },
+      color = { bg = theme.bg1, fg = theme.fg1, gui = "bold" },
     }
 
-    helper.sections.ins_right {
+    helpers.sections.ins_right {
       function()
         local message = ""
 
@@ -231,20 +130,19 @@ return {
 
         return message
       end,
-      cond = helper.conditions.hide_in_width,
+      cond = helpers.conditions.hide_in_width,
       icon = "",
-      color = { bg = helper.colors.black, fg = helper.colors.light.blue },
+      color = { bg = theme.bg1, fg = theme.purple },
     }
 
-    helper.sections.ins_right {
+    helpers.sections.ins_right {
       "location",
-      separator = { left = "" },
-      color = { bg = helper.colors.dark.green, fg = helper.colors.black, gui = "bold" },
+      color = { bg = theme.fg1, fg = theme.bg1 },
     }
 
-    helper.sections.ins_right {
+    helpers.sections.ins_right {
       "progress",
-      color = { bg = helper.colors.black, fg = helper.colors.dark.green, gui = "bold" },
+      color = { bg = theme.bg1, fg = theme.fg1 },
     }
 
     require("lualine").setup(opts)
