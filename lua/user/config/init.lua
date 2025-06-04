@@ -16,7 +16,7 @@ knvim.langs.debugger = {}
 knvim.startup.header = ascii.headers.default
 knvim.startup.footer = ""
 
-knvim.theme.colorscheme = "gruvbox"
+knvim.theme.colorscheme = "min-theme"
 
 -- Check a list of all available packages, see https://mason-registry.dev/registry/list.
 knvim.langs.lsp.names = {}
