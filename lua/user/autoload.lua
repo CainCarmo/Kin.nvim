@@ -6,6 +6,7 @@ local M = {
   "user.helpers.extensions.table",
   --> Load layout variables
   "user.layout.ascii",
+  "user.layout.colors",
   "user.layout.icons",
   --> Load knvim
   "user.knvim",
