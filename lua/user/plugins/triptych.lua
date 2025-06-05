@@ -1,7 +1,7 @@
 return {
   "simonmclean/triptych.nvim",
   keys = {
-    { "<leader>e", "<cmd>Triptych<CR>", desc = "Toggle View", mode = { "n", "v" } },
+    { "<leader>e", "<cmd>Triptych<CR>", desc = "Filetree", mode = { "n", "v" } },
   },
   opts = {
     options = {
