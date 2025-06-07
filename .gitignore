@@ -1,4 +1,4 @@
 # --> Files
-**/user/knvim.lua
+**/user/**
 # --> Folders
 /.vscode

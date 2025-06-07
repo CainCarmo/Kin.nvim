@@ -1,5 +1,6 @@
 --> © Core
-require "user.config"
 
---> 📥 Packager Manager
-require "user.packager"
+--> #: Configuration
+require "knvim.config"
+--> #: Packager Manager
+require "knvim.packager"
