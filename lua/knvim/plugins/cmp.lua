@@ -12,13 +12,22 @@ return {
     sources = {
       { name = "path" },
       { name = "buffer" },
+      { name = "cmdline" },
       { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "nvim_lsp" },
     },
     formatting = {
-      format = function(_, vim_item)
+      format = function(entry, vim_item)
         vim_item.kind = string.format("%s %s", (" " .. Icons.kind[vim_item.kind] .. " ") or "", vim_item.kind)
+        vim_item.dup = ({
+          path = 0,
+          buffer = 0,
+          cmdline = 0,
+          luasnip = 0,
+          nvim_lsp = 0,
+        })[entry.source.name] or 0
+
         return vim_item
       end,
       fields = { "abbr", "kind", "menu" },
@@ -27,44 +36,42 @@ return {
       select = false,
     },
     experimental = {
-      ghost_text = false,
+      ghost_text = true,
       native_menu = false,
     },
   },
-  event = "InsertEnter",
+  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     { "hrsh7th/cmp-path" },
     { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-cmdline" },
     { "hrsh7th/cmp-nvim-lsp" },
     {
       "hrsh7th/cmp-nvim-lua",
       ft = "lua",
     },
+    { "github/copilot.vim" },
     {
       "L3MON4D3/LuaSnip",
       dependencies = "rafamadriz/friendly-snippets",
     },
-    { "github/copilot.vim" },
   },
   config = function(_, opts)
-    local cmp = require "cmp"
-    local luasnip = require "luasnip"
+    local cmp, luasnip = require "cmp", require "luasnip"
 
     local function check_backspace()
       local col = vim.fn.col "." - 1
       return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
     end
 
-    opts.confirm_opts.behavior = cmp.ConfirmBehavior.Replace
     opts.snippet = {
       expand = function(args)
+        require("luasnip/loaders/from_vscode").lazy_load()
         luasnip.lsp_expand(args.body)
       end,
     }
     opts.mapping = cmp.mapping.preset.insert({
-      ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-      ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ["<CR>"] = cmp.mapping.confirm { select = true },
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -78,15 +85,6 @@ return {
           fallback()
         end
       end, { "i", "s" }),
-      ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-      ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-      ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-      ["<C-e>"] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
@@ -98,7 +96,7 @@ return {
       end, { "i", "s" }),
     })
 
-    require("luasnip/loaders/from_vscode").lazy_load()
+    opts.confirm_opts.behavior = cmp.ConfirmBehavior.Replace
     cmp.setup(opts)
   end,
 }
