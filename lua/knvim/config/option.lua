@@ -1,5 +1,10 @@
 --> Vim (g)
 vim.g.mapleader = " "
+vim.g.copilot_lsp_settings = {
+  telemetry = {
+    telemetryLevel = "off",
+  },
+}
 
 --> Vim (o)
 vim.o.background = "dark"
