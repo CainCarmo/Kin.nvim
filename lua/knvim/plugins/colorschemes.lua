@@ -7,4 +7,16 @@ return {
     "ellisonleao/gruvbox.nvim",
     lazy = true,
   },
+  {
+    "shaunsingh/nord.nvim",
+    lazy = true,
+  },
+  {
+    "Mofiqul/vscode.nvim",
+    lazy = true,
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+  },
 }
