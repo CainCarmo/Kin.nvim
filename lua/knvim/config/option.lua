@@ -6,6 +6,8 @@ vim.g.copilot_lsp_settings = {
   },
 }
 
+vim.g.copilot_enabled = 1
+
 --> Vim (o)
 vim.o.background = "dark"
 

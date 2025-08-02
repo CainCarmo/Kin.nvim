@@ -141,6 +141,7 @@ icons.misc = {
   Tag = " ",
   Watch = "",
   Smiley = " ",
+  Copilot = " ",
   Package = " ",
   CircuitBoard = " ",
 }

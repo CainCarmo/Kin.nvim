@@ -56,6 +56,9 @@ return {
         local gitdir = vim.fn.finddir(".git", filepath .. ";")
         return gitdir and #gitdir > 0 and #gitdir < #filepath
       end,
+      check_copilot_status = function()
+        return vim.g.copilot_enabled == 1
+      end,
     }
 
     --> Left
@@ -110,6 +113,14 @@ return {
       "searchcount",
       cond = helpers.conditions.hide_in_width,
       color = { fg = theme.orange },
+    }
+
+    helpers.sections.ins_right {
+      function()
+        return Icons.misc.Copilot:gsub(" ", "")
+      end,
+      cond = helpers.conditions.check_copilot_status,
+      color = { bg = theme.purple, fg = theme.bg0, gui = "bold" },
     }
 
     helpers.sections.ins_right {
