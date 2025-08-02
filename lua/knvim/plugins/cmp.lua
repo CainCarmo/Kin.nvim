@@ -12,7 +12,6 @@ return {
     sources = {
       { name = "path" },
       { name = "buffer" },
-      { name = "cmdline" },
       { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "nvim_lsp" },
@@ -44,7 +43,6 @@ return {
   dependencies = {
     { "hrsh7th/cmp-path" },
     { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/cmp-cmdline" },
     { "hrsh7th/cmp-nvim-lsp" },
     {
       "hrsh7th/cmp-nvim-lua",
