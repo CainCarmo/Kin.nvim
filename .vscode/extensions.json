@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "sumneko.lua",
+    "JohnnyMorganz.stylua",
+    "usernamehw.errorlens",
+    "ms-vscode.powershell",
+    "timonwong.shellcheck",
+    "foxundermoon.shell-format",
+    "mads-hartmann.bash-ide-vscode"
+  ]
+}
