@@ -1,5 +1,6 @@
 {
   "catppuccin-icons.associations.folders": {
+    "pwsh": "folder_fvm",
     "knvim": "folder_core"
   }
 }
