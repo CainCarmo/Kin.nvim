@@ -1,4 +1,8 @@
 {
+  "Lua.diagnostics.globals": [
+    "vim",
+    "knvim"
+  ],
   "catppuccin-icons.associations.folders": {
     "pwsh": "folder_fvm",
     "knvim": "folder_core"
