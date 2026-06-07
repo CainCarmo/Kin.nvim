@@ -14,7 +14,7 @@ if not vim.loop.fs_stat(lazypath) then
     vim.api.nvim_echo({
       { "Error cloning lazy.nvim: " .. output, "ErrorMsg" },
       { "\nPress any key to continue..." },
-    })
+    }, true, {})
 
     vim.fn.getchar()
     os.exit(1)
