@@ -1,4 +1,4 @@
-return {
+_G.icons = {
   ui = {
     ArrowCircleDown = "",
     ArrowCircleLeft = "",

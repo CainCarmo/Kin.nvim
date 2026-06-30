@@ -1,4 +1,4 @@
-return {
+_G.ascii = {
   headers = {
     ["knvim"] = {
       [[                                                 ]],
